@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //動的にURL遷移するためのモジュール
 import { ActivatedRoute } from "@angular/router";
-import { products } from '../../products';
+import { ProductService } from '../shared/product.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,12 +13,21 @@ export class ProductDetailComponent implements OnInit {
   //productを宣言しhtml内での変数として利用可能にする
   product:any;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      //productはproducts.ts内のJSONをIdで指定し、初期値として渡せるようにする
-      this.product = products[+params.get("productId")!]
+      const productObservable = this.productService.getProductById(params.get("productId")!)
+      productObservable.subscribe(
+        (data) => {
+          this.product = data
+        },
+        (err) => {
+
+        }
+      )
     })
   }
 
