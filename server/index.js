@@ -59,7 +59,7 @@ const path = require("path")
 // })
 
 
-ongoose.connect(config.DB_URI, {
+mongoose.connect(config.DB_URI, {
 useNewUrlParser: true,
 useUnifiedTopology: true
 }).then(
