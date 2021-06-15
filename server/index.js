@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 // パスワードをgitに載せないようにする
 const config = require("./config/index")
 // Fake data
-const FakeDb = require("./fake-db")
+const SampleDb = require('./sample-db')
 // エンドポイントのルーター
 const productRoutes = require("./routes/products")
 // ディレクトリ
