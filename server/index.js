@@ -76,7 +76,7 @@ const app = express()
 app.use('/api/v1/products', productRoutes)
 
 if(process.env.NODE_ENV === 'production') {
-const appPath = path.join( __dirname, '..', 'dist', 'reservation-app')
+const appPath = path.join( __dirname, '..', 'dist', 'Basic-AngularApp')
 app.use(express.static(appPath))
 app.get("*", function(req, res) {
   res.sendFile(path.resolve(appPath, 'index.html'))
